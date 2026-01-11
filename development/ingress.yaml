@@ -2,8 +2,16 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx
+  annotations:
+    cert-manager.io/clusterissuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   ingressClassName: traefik
+  tls:
+  - hosts:
+    - nginx.rlcstatistics.net
+    secretName: nginx-tls
   rules:
     - host: nginx.rlcstatistics.net
       http:
