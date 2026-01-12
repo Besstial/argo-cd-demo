@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: dev-svc-3
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: nginx
   ports:
